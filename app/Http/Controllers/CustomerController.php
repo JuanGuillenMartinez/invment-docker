@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Customer\CustomerResource;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $customers = Customer::all();
-        return $this->sendResponse($customers);
+        $customers = CustomerResource::collection(Customer::all());
+        return ($customers) ? $this->sendResponse($customers) : $this->sendError();
     }
 
     /**
@@ -38,7 +39,8 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = new CustomerResource(Customer::find($id));
+        return ($customer) ? $this->sendResponse($customer) : $this->sendError();
     }
 
     /**
