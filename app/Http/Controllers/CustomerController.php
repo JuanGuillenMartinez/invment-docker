@@ -49,8 +49,12 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = new CustomerResource(Customer::find($id));
-        return ($customer) ? $this->sendResponse($customer) : $this->sendError();
+        $customer = Customer::find($id);
+        if($customer) {
+            $customerResource = new CustomerResource($customer);
+            return $this->sendResponse($customerResource);
+        }
+        return $this->sendError();
     }
 
     /**
@@ -64,12 +68,15 @@ class CustomerController extends Controller
     {
         //
         $customer = Customer::find($id);
-        $customer->name = $request->name;
-        $customer->first_name = $request->first_name;
-        $customer->last_name = $request->last_name;
-        $customer->address = $request->address;
-        $customer->email = $request->email;
-        return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError();
+        if($customer) {
+            $customer->name = $request->name;
+            $customer->first_name = $request->first_name;
+            $customer->last_name = $request->last_name;
+            $customer->address = $request->address;
+            $customer->email = $request->email;
+            return $this->sendResponse(new CustomerResource($customer));
+        }
+        return $this->sendError();
     }
 
     /**

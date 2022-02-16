@@ -102,6 +102,47 @@
                     }
                 ]
             }
+        },
+        "/customers/{id}": {
+            "get": {
+                "operationId": "deleteCustomer",
+                "description": "**Eliminar cliente por ID**\nRequiere API Token",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "description": "ID del cliente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro eliminado correctamente"
+                    },
+                    "202": {
+                        "description": "El registro no existe"
+                    },
+                    "403": {
+                        "description": "No autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["customers"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
