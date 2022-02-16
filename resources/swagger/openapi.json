@@ -1,0 +1,191 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Library API",
+        "contact": {
+            "email": "juanguillenmtz16@gmail.com"
+        },
+        "description": "Prueba sobre documentación de APIs utilizando Swagger"
+    },
+    "paths": {
+        "/customers": {
+            "get": {
+                "operationId": "getCustomers",
+                "description": "**Obtener listado de clientes**\nRequiere API Token",
+                "responses": {
+                    "200": {
+                        "description": "Registros obtenidos correctamente"
+                    },
+                    "403": {
+                        "description": "No autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["customers"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "operationId": "saveCustomer",
+                "description": "**Registrar nuevo cliente**\nRequiere API Token",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string",
+                            "description": "Nombre/s del cliente"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "first_name",
+                        "schema": {
+                            "type": "string",
+                            "description": "Apellido paterno"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "last_name",
+                        "schema": {
+                            "type": "string",
+                            "description": "Apellido materno"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "address",
+                        "schema": {
+                            "type": "string",
+                            "description": "Dirección del cliente"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string",
+                            "description": "Correo electrónico de contacto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro almacenado correctamente"
+                    },
+                    "403": {
+                        "description": "No autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": ["customers"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Response": {
+                "title": "Response",
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Customer",
+                            "description": "Arreglo de clientes"
+                        }
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Request successfully completed"
+                    }
+                }
+            },
+            "Customer": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "first_name",
+                    "last_name",
+                    "address",
+                    "email"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Juan"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "Guillen"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Martinez"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Marcelino Garcia Barragan"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "juanguillenmtz16@gmail.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-02-15T15:34:15.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-02-15T15:34:15.000000Z"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "sanctum"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "customers"
+        }
+    ]
+}
