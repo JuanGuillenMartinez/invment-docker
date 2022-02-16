@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', function () {
+    $response = [
+        'success' => false,
+        'data' => [
+            'error' => 'API Key is required'
+        ],
+        'message' => 'An error occurred'
+    ];
+    return response()->json($response, 403);
+})->name('login');
