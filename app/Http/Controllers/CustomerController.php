@@ -74,7 +74,7 @@ class CustomerController extends Controller
             $customer->last_name = $request->last_name;
             $customer->address = $request->address;
             $customer->email = $request->email;
-            return $this->sendResponse(new CustomerResource($customer));
+            return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError('An error has occurred while saving');
         }
         return $this->sendError();
     }
