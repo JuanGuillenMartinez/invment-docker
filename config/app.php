@@ -56,6 +56,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'urlApi' => env('APP_URL_API', 'http://127.0.0.1:8000/api'),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*
@@ -69,7 +71,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Mexico_City',
 
     /*
     |--------------------------------------------------------------------------
