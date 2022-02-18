@@ -29,4 +29,5 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('/customers', CustomerController::class);
 });
 
-Route::post('test-webhook', [WebhookController::class, 'handle']);
+// Route::post('test-webhook', [WebhookController::class, 'handle']);
+Route::webhooks('test-webhook');
