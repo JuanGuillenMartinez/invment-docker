@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Illuminate\Http\Request;
 use App\Http\Requests\Customer\CustomerRequest;
 use App\Http\Resources\Customer\CustomerResource;
 
@@ -18,7 +17,7 @@ class CustomerController extends Controller
     {
         //
         $customers = CustomerResource::collection(Customer::all());
-        return ($customers) ? $this->sendResponse($customers) : $this->sendError();
+        return ($customers) ? $this->sendResponse($customers) : $this->sendError('No hay clientes registrados');
     }
 
     /**
@@ -48,7 +47,7 @@ class CustomerController extends Controller
             $customerResource = new CustomerResource($customer);
             return $this->sendResponse($customerResource);
         }
-        return $this->sendError();
+        return $this->sendError('El cliente no existe');
     }
 
     /**
