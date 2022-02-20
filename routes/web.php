@@ -18,13 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    // $response = [
-    //     'success' => false,
-    //     'data' => [
-    //         'error' => 'API Key is required'
-    //     ],
-    //     'message' => 'An error occurred'
-    // ];
-    // return response()->json($response, 403);
     return view('login');
 })->name('login');
