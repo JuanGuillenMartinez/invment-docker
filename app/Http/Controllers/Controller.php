@@ -2,50 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Traits\HandleJsonResponse;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    // Estos métodos nos sirven para retornar las respuestas HTTP
-
-    /**
-     * Make a successfully response.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendResponse($result, $message = 'Request successfully completed', $code = 200)
-    {
-    	$response = [
-            'success' => true,
-            'data'    => $result,
-            'message' => $message,
-        ];
-
-        return response()->json($response, $code);
-    }
-
-
-    /**
-     * Return a error response.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendError($errorMessage = 'An error has occurred', $code = 202, $errors = [])
-    {
-    	$response = [
-            'success' => false,
-            'message' => $errorMessage,
-            'data' => [
-                'errors' => $errors
-            ],
-        ];
-
-        return response()->json($response, $code);
-    }
-    
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, HandleJsonResponse;
 }
