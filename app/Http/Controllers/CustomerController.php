@@ -32,7 +32,7 @@ class CustomerController extends Controller
         //
         $customer = new Customer();
         $customer->fillModel($request->all());
-        return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError();
+        return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError('Ha ocurrido un error al agregar el registro');
     }
 
     /**
