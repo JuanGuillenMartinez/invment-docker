@@ -9,7 +9,7 @@ namespace App\Traits;
  * @param  Model  $model
  * @return \Illuminate\Database\Eloquent\Model
  */
-trait HandleJsonResponse
+trait HandlerJsonResponse
 {
     // Estos métodos nos sirven para retornar las respuestas HTTP
 
