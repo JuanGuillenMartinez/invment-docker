@@ -30,15 +30,9 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
-        $attributes = [
-            'name' => $request->name,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'address' => $request->address,
-            'email' => $request->email,
-        ];
-        $customer = new Customer($attributes);
-        return ($customer->save($attributes)) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError();
+        $customer = new Customer();
+        $customer->fillModel($request->all());
+        return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError();
     }
 
     /**
