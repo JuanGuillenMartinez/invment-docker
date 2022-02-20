@@ -50,7 +50,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Customer::find($id);
-        if($customer) {
+        if ($customer) {
             $customerResource = new CustomerResource($customer);
             return $this->sendResponse($customerResource);
         }
@@ -68,15 +68,11 @@ class CustomerController extends Controller
     {
         //
         $customer = Customer::find($id);
-        if($customer) {
-            $customer->name = $request->name;
-            $customer->first_name = $request->first_name;
-            $customer->last_name = $request->last_name;
-            $customer->address = $request->address;
-            $customer->email = $request->email;
-            return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError('An error has occurred while saving');
+        if ($customer) {
+            $customer->fillModel($request->all());
+            return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError('Un error ocurrió mientras se guardaba');
         }
-        return $this->sendError();
+        return $this->sendError("El cliente no existe");
     }
 
     /**
