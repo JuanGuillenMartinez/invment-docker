@@ -27,4 +27,8 @@ class Customer extends Model
         'address',
         'email'
     ];
+
+    public function borrows() {
+        return $this->hasMany(Borrow::class);
+    }
 }
