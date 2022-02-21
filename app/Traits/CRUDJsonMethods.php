@@ -25,4 +25,13 @@ trait CRUDJsonMethods
         $recordResource = new $this->modelResource($record);
         return ($record->save()) ? $this->sendResponse($recordResource) : $this->sendError('Ha ocurrido un error al agregar el registro');
     }
+
+    public function fetchRecordById(Int $id) : JsonResponse {
+        $record = $this->model::find($id);
+        if ($record) {
+            $recordResource = new $this->modelResource($record);
+            return $this->sendResponse($recordResource);
+        }
+        return $this->sendError('El cliente no existe');
+    }
 }

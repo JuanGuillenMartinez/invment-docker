@@ -40,14 +40,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Int $id)
     {
-        $customer = Customer::find($id);
-        if ($customer) {
-            $customerResource = new CustomerResource($customer);
-            return $this->sendResponse($customerResource);
-        }
-        return $this->sendError('El cliente no existe');
+        return $this->fetchRecordById($id);
     }
 
     /**
