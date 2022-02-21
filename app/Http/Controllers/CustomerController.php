@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\Customer\CustomerRequest;
 use App\Http\Resources\Customer\CustomerResource;
+use App\Traits\CRUDJsonMethods;
 
 class CustomerController extends Controller
 {
+    use CRUDJsonMethods;
+
+    protected $model = Customer::class;
+    protected $modelResource = CustomerResource::class;
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +22,7 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $customers = CustomerResource::collection(Customer::all());
-        return ($customers) ? $this->sendResponse($customers) : $this->sendError('No hay clientes registrados');
+        return $this->fetchAll();
     }
 
     /**
