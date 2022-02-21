@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebhookController;
@@ -29,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/user/logout', [UserController::class, 'logout']);
     Route::resource('/customers', CustomerController::class);
     Route::resource('/books', BookController::class);
+    Route::resource('/borrows', BorrowController::class);
 });
 
 // Route::post('test-webhook', [WebhookController::class, 'handle']);
