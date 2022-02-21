@@ -44,4 +44,12 @@ trait CRUDJsonMethods
         }
         return $this->sendError("El registro no existe");
     }
+
+    public function deleteRecordById(Int $id) : JsonResponse {
+        $record = $this->model::find($id);
+        if($record) {
+            return ($record->delete()) ? $this->sendResponse('Registro eliminado correctamente') : $this->sendError();
+        }
+        return $this->sendError("El registro no existe");
+    }
 }

@@ -64,10 +64,8 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Int $id)
     {
-        //
-        $customer = Customer::find($id);
-        return ($customer->delete()) ? $this->sendResponse('Eliminado correctamente') : $this->sendError();
+        return $this->deleteRecordById($id);
     }
 }
