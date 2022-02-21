@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\Customer\CustomerRequest;
 use App\Http\Resources\Customer\CustomerResource;
-use App\Traits\CRUDJsonMethods;
 
 class CustomerController extends Controller
 {
-    use CRUDJsonMethods;
 
     protected $model = Customer::class;
     protected $modelResource = CustomerResource::class;
