@@ -52,15 +52,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CustomerRequest $request, $id)
+    public function update(Int $id, CustomerRequest $request)
     {
-        //
-        $customer = Customer::find($id);
-        if ($customer) {
-            $customer->fillModel($request->all());
-            return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError('Un error ocurrió mientras se guardaba');
-        }
-        return $this->sendError("El cliente no existe");
+        $properties = $request->all();
+        return $this->updateRecord($id, $properties);
     }
 
     /**

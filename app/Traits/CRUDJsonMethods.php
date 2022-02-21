@@ -34,4 +34,14 @@ trait CRUDJsonMethods
         }
         return $this->sendError('El registro no existe');
     }
+
+    public function updateRecord(Int $id, Array $properties) : JsonResponse {
+        $record = $this->model::find($id);
+        if ($record) {
+            $record->fillModel($properties);
+            $recordResource = new $this->modelResource($record);
+            return ($record->save()) ? $this->sendResponse($recordResource) : $this->sendError('Un error ocurrió mientras se guardaba');
+        }
+        return $this->sendError("El registro no existe");
+    }
 }
