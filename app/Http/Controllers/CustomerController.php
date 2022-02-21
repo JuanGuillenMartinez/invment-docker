@@ -19,7 +19,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return $this->fetchAll();
+        return $this->fetchAllRecords();
     }
 
     /**

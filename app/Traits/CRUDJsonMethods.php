@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
  */
 trait CRUDJsonMethods
 {
-    public function fetchAll()
+    public function fetchAllRecords() : JsonResponse
     {
         $collection = $this->modelResource::collection($this->model::all());
         return ($collection) ? $this->sendResponse($collection) : $this->sendError('No hay registros');
@@ -32,6 +32,6 @@ trait CRUDJsonMethods
             $recordResource = new $this->modelResource($record);
             return $this->sendResponse($recordResource);
         }
-        return $this->sendError('El cliente no existe');
+        return $this->sendError('El registro no existe');
     }
 }
