@@ -19,7 +19,6 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
         return $this->fetchAll();
     }
 
@@ -31,10 +30,8 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        //
-        $customer = new Customer();
-        $customer->fillModel($request->all());
-        return ($customer->save()) ? $this->sendResponse(new CustomerResource($customer)) : $this->sendError('Ha ocurrido un error al agregar el registro');
+        $requestProperties = $request->all();
+        return $this->saveRecord($requestProperties);
     }
 
     /**
