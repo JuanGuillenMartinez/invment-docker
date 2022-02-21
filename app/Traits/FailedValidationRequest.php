@@ -5,7 +5,8 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 trait FailedValidationRequest {
-    public function failedValidationApi(Validator $validator)
+    
+    public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'success'   => false,
