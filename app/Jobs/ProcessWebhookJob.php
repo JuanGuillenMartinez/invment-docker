@@ -10,10 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob as SpatieProcessWebhookJob;
 
-class ProcessWebhookJob extends SpatieProcessWebhookJob implements ShouldQueue 
+class ProcessWebhookJob extends SpatieProcessWebhookJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     /**
      * Create a new job instance.
      *
@@ -31,7 +29,6 @@ class ProcessWebhookJob extends SpatieProcessWebhookJob implements ShouldQueue
      */
     public function handle()
     {
-        //
         Log::info('El webhook se ejecuto correctamente');
     }
 }

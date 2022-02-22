@@ -38,7 +38,8 @@ return [
             /*
              * This class determines the response on a valid webhook call.
              */
-            'webhook_response' => \Spatie\WebhookClient\WebhookResponse\DefaultRespondsTo::class,
+            // 'webhook_response' => \Spatie\WebhookClient\WebhookResponse\DefaultRespondsTo::class,
+            'webhook_response' => \App\WebhookResponses\CustomResponse::class,
 
             /*
              * The classname of the model to be used to store webhook calls. The class should
