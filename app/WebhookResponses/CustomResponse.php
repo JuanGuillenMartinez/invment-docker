@@ -11,6 +11,6 @@ class CustomResponse implements RespondsToWebhook
 {
     public function respondToValidWebhook(Request $request, WebhookConfig $config): Response
     {
-        return response()->json(['message' => 'ok', 'test' => $request->get('action')]);
+        return response()->json(['message' => 'ok', 'issue-title' => $request->issue['title']]);
     }
 }
