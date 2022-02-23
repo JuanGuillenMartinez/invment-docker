@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AtratoController;
+use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,4 @@ Route::middleware('auth:sanctum')->group(function() {
 
 // Route::post('test-webhook', [WebhookController::class, 'handle']);
 Route::webhooks('test-webhook');
+Route::post('webhook-atrato', [AtratoController::class, 'receive']);
