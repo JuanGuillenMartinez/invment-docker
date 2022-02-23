@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.8"
 
 services:
   mariadb:
@@ -9,7 +9,7 @@ services:
       - ./mariadb/charset.cnf:/etc/mysql/conf.d/charset.cnf
       - ./mariadb/datamysql:/var/lib/mysql
     networks:
-      - apscreativas-laravel-devkit
+      - laravel-network
     domainname: mariadb
     hostname: mariadb
     env_file:
@@ -27,7 +27,7 @@ services:
       - ${SSH_AUTH_SOCK}:/ssh-auth.sock
     working_dir: /var/www/html
     networks:
-      - apscreativas-laravel-devkit
+      - laravel-network
     env_file:
       - ./.env
   app:
@@ -42,7 +42,7 @@ services:
       - ${SSH_AUTH_SOCK}:/ssh-auth.sock
     working_dir: /var/www/html
     networks:
-      - apscreativas-laravel-devkit
+      - laravel-network
     env_file:
       - ./.env
   web:
@@ -57,12 +57,12 @@ services:
       - ./php/conf.d/session.ini:/usr/local/etc/php/conf.d/session.ini
     working_dir: /var/www/html
     networks:
-      apscreativas-laravel-devkit:
+      laravel-network:
         aliases:
           - laravel.localhost
     env_file:
       - ./.env
 
 networks:
-  apscreativas-laravel-devkit:
+  laravel-network:
     driver: bridge
