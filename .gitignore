@@ -16,3 +16,4 @@ yarn-error.log
 /supervisord.log
 /.docker/.env
 /supervisord.pid
+/.docker/mariadb/datamysql
