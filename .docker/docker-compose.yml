@@ -26,6 +26,7 @@ services:
       - ~/.ssh/known_hosts:/root/.ssh/known_hosts
       - ${SSH_AUTH_SOCK}:/ssh-auth.sock
     working_dir: /var/www/html
+    # tty: true
     networks:
       - laravel-network
     env_file:
